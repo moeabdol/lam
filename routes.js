@@ -12,9 +12,11 @@ router.use((req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  User.find({}, null, { sort: { createdAt: "descending" } }, (err, users) => {
+  User.find({}, null, { sort: { createdAt: -1 } }, (err, users) => {
     if (err) { return next(err); }
-    res.render("index", { users: users });
+    res.render("index", {
+      users: users
+    });
   });
 });
 

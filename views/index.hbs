@@ -1,0 +1,15 @@
+<h1>Welcome to Learn About Me!</h1>
+
+{{#each users}}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a href="/users/{{this.username}}">
+        {{this.username}}
+      </a>
+    </div>
+
+    {{#if this.bio}}
+      <div class="panel-body">{{this.bio}}</div>
+    {{/if}}
+  </div>
+{{/each}}
