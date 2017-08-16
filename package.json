@@ -6,6 +6,9 @@
   "repository": "https://github.com/moeabdol/lam",
   "author": "moeabdol <mohd.a.saed@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node app"
+  },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.2",
