@@ -1,0 +1,10 @@
+{{#if currentUserIsOwner}}
+  <a href="/edit" class="pull-right">Edit your profile</a>
+{{/if}}
+
+<h1>{{username}}</h1>
+<h2>Joined on {{user.createdAt}}</h2>
+
+{{#if user.bio}}
+  <p>{{user.bio}}</p>
+{{/if}}
