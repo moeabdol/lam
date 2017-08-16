@@ -4,13 +4,17 @@ const path       = require("path");
 const bodyParser = require("body-parser");
 const session    = require("express-session");
 const flash      = require("connect-flash");
+const passport   = require("passport");
 const hbs        = require("express-handlebars");
 const routes     = require(path.resolve(__dirname, "routes"));
 
 const app = express();
+const setupPassport = require(path.resolve(__dirname, "setuppassport"));
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/test", { useMongoClient: true });
+
+setupPassport();
 
 app.set("port", process.env.PORT || 3000);
 
@@ -31,6 +35,9 @@ app.use(session({
 }));
 
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(routes);
 

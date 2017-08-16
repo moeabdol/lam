@@ -21,6 +21,16 @@ router.get("/", (req, res, next) => {
   });
 });
 
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+
+router.post("/login", passport.authenticate("login", {
+  successRedirect:  "/",
+  failureRedirect:  "/login",
+  failureFlash:     true
+}));
+
 router.get("/signup", (req, res) => {
   res.render("signup");
 });
@@ -42,13 +52,12 @@ router.post("/signup", (req, res, next) => {
     });
     newUser.save(next);
 
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/signup",
-      failureFlash:    true
-    });
   });
-});
+}, passport.authenticate("login", {
+  successRedirect: "/",
+  failureRedirect: "/signup",
+  failureFlash:    true
+}));
 
 router.get("/users/:username", (req, res, next) => {
   User.findOne({ username: req.params.username }, (err, user) => {
@@ -62,6 +71,11 @@ router.get("/users/:username", (req, res, next) => {
       }
     });
   });
+});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 module.exports = router;
