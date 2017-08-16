@@ -1,14 +1,14 @@
-const express  = require("express");
-const passport = require("passport");
-const path     = require("path");
-const User     = require(path.resolve(__dirname, "models", "user"));
+const express       = require("express");
+const passport      = require("passport");
+const path          = require("path");
+const User          = require(path.resolve(__dirname, "models", "user"));
 
 const router = express.Router();
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.user;
-  res.locals.errors = req.flash("error");
-  res.locals.infos = req.flash("info");
+  res.locals.errors      = req.flash("error");
+  res.locals.infos       = req.flash("info");
   next();
 });
 
@@ -41,11 +41,13 @@ router.post("/signup", (req, res, next) => {
       password: password
     });
     newUser.save(next);
+
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/signup",
+      failureFlash:    true
+    });
   });
-}, passport.authenticate("login", {
-  successRedirect: "/",
-  failureRedirect: "/signup",
-  failureFlash:    true
-}));
+});
 
 module.exports = router;
