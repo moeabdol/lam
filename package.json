@@ -1,0 +1,23 @@
+{
+  "name": "lam",
+  "version": "1.0.0",
+  "description": "Learn About Me express application example from the book \"Express in Action\" by Evan M. Hahn.",
+  "main": "app.js",
+  "repository": "https://github.com/moeabdol/lam",
+  "author": "moeabdol <mohd.a.saed@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.5",
+    "mongoose": "^4.11.7",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.4.1"
+  }
+}
